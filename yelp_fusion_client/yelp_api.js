@@ -11,6 +11,7 @@ require('dotenv').load();
 // Import the Yelp API Client
 const yelp = require('yelp-fusion');
 
+// Sets parameters for restaurant search
 const searchRequest = {
   categories: 'drinks',
   location: 'boston, ma',
