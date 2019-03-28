@@ -1,4 +1,5 @@
 'use strict';
+<<<<<<< HEAD
 var express = require('express'),
     app = express(),
 
@@ -7,9 +8,12 @@ var express = require('express'),
 
 // require and load dotenv
 require('dotenv').load();
+=======
+>>>>>>> parent of 9ea6ef8... lol
 
 // Import the Yelp API Client
 const yelp = require('yelp-fusion');
+const apiKey = 'lK_XNoYU9TEkISrjQC8E2aE-9eamI3uQkYP-xPFHQxwKJ0-Ptd0x64SgN9zAp6kOUWM2ScBc17XQzTeP_vcVc-zs5rXdjUsaK7WxjJ5ZtqPB3y7IBRQFPNIRLBCdXHYx';
 
 // Sets parameters for restaurant search
 const searchRequest = {
@@ -18,7 +22,7 @@ const searchRequest = {
   open_now: true
 };
 
-const client = yelp.client(process.env.MY_API_KEY);
+const client = yelp.client(apiKey);
 
 client.search(searchRequest).then(response => {
   const r_results = response.jsonBody.businesses;
