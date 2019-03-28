@@ -1,8 +1,15 @@
 'use strict';
+var express = require('express'),
+    app = express(),
+
+    // require other modules
+    ...
+
+// require and load dotenv
+require('dotenv').load();
 
 // Import the Yelp API Client
 const yelp = require('yelp-fusion');
-const apiKey = 'lK_XNoYU9TEkISrjQC8E2aE-9eamI3uQkYP-xPFHQxwKJ0-Ptd0x64SgN9zAp6kOUWM2ScBc17XQzTeP_vcVc-zs5rXdjUsaK7WxjJ5ZtqPB3y7IBRQFPNIRLBCdXHYx';
 
 const searchRequest = {
   categories: 'drinks',
@@ -10,7 +17,7 @@ const searchRequest = {
   open_now: true
 };
 
-const client = yelp.client(apiKey);
+const client = yelp.client(process.env.MY_API_KEY);
 
 client.search(searchRequest).then(response => {
   const r_results = response.jsonBody.businesses;
