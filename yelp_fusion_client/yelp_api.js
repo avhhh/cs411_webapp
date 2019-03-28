@@ -4,6 +4,7 @@
 const yelp = require('yelp-fusion');
 const apiKey = 'lK_XNoYU9TEkISrjQC8E2aE-9eamI3uQkYP-xPFHQxwKJ0-Ptd0x64SgN9zAp6kOUWM2ScBc17XQzTeP_vcVc-zs5rXdjUsaK7WxjJ5ZtqPB3y7IBRQFPNIRLBCdXHYx';
 
+// Sets parameters for restaurant search
 const searchRequest = {
   categories: 'drinks',
   location: 'boston, ma',
@@ -11,7 +12,6 @@ const searchRequest = {
 };
 
 const client = yelp.client(apiKey);
-
 client.search(searchRequest).then(response => {
   const r_results = response.jsonBody.businesses;
 
