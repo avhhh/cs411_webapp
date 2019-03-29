@@ -1,4 +1,4 @@
-/*'use strict';
+'use strict';
 // <<<<<<< HEAD
 // var express = require('express'),
 //     app = express(),
@@ -38,4 +38,3 @@ client.search(searchRequest).then(response => {
 }).catch(e => {
   console.log(e);
 });
-*/
