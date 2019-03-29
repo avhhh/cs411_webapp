@@ -65,15 +65,74 @@
 
         $(thisAlert).removeClass('alert-validate');
     }*/
-
-    var location = $('input[name="location"]');
-    var cuisine = $('input[name="cuisine"]');
-
-    export function getParams(){
-        var params = [location, cuisine];
-        return params;
-    }
-    
     
 
 })(jQuery);
+
+
+
+function getInput(){
+
+    var location = $('input[name="location"]');
+    var cuisine = $('input[name="cuisine"]');
+    var params = [location, cuisine];
+
+    doAPI(params);
+
+
+    return false;
+}
+
+
+function doAPI(params){
+    'use strict';
+// <<<<<<< HEAD
+// var express = require('express'),
+//     app = express(),
+
+    // require other modules
+
+
+// require and load dotenv
+// require('dotenv').load();
+// =======
+// >>>>>>> parent of 9ea6ef8... lol
+
+// Import the Yelp API Client
+const yelp = require('../yelp_fusion_client/node_modules_yelp-fusion');
+const apiKey = 'lK_XNoYU9TEkISrjQC8E2aE-9eamI3uQkYP-xPFHQxwKJ0-Ptd0x64SgN9zAp6kOUWM2ScBc17XQzTeP_vcVc-zs5rXdjUsaK7WxjJ5ZtqPB3y7IBRQFPNIRLBCdXHYx';
+
+// Sets parameters for restaurant search
+
+
+const searchRequest = {
+  categories: params[0],
+  location: params[1],
+  open_now: true
+};
+
+const client = yelp.client(apiKey);
+
+client.search(searchRequest).then(response => {
+  const r_results = response.jsonBody.businesses;
+
+  // Iterates through the JSON body and prints result to console
+  var i;
+  for (i = 0; i < r_results.length; i++){
+    const JSON_string = JSON.stringify(r_results[0], null, 4);
+    console.log(JSON_string);
+  }
+}).catch(e => {
+  console.log(e);
+});
+
+
+}
+
+
+
+
+
+
+
+
