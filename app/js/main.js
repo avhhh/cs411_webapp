@@ -66,19 +66,13 @@
         $(thisAlert).removeClass('alert-validate');
     }*/
 
-    var zipcode = $('input[name="zipcode"]');
+    var location = $('input[name="location"]');
     var cuisine = $('input[name="cuisine"]');
 
-    $.ajax({
-        method: "POST",
-        url:,
-        data:{
-            zipcode: zipcode,
-            cuisine: cuisine
-        }
-    }).done(function(output){
-        
-    });
+    export function getParams(){
+        var params = [location, cuisine];
+        return params;
+    }
     
     
 

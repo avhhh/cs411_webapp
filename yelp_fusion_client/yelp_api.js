@@ -16,9 +16,13 @@ const yelp = require('yelp-fusion');
 const apiKey = 'lK_XNoYU9TEkISrjQC8E2aE-9eamI3uQkYP-xPFHQxwKJ0-Ptd0x64SgN9zAp6kOUWM2ScBc17XQzTeP_vcVc-zs5rXdjUsaK7WxjJ5ZtqPB3y7IBRQFPNIRLBCdXHYx';
 
 // Sets parameters for restaurant search
+import { getParams } from './app/js/main.js';
+let params = getParams();
+
+
 const searchRequest = {
-  categories: 'drinks',
-  location: 'boston, ma',
+  categories: params[0],
+  location: params[1],
   open_now: true
 };
 
