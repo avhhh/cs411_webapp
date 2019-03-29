@@ -99,7 +99,12 @@ function doAPI(params){
 // >>>>>>> parent of 9ea6ef8... lol
 
 // Import the Yelp API Client
-const yelp = require('../yelp_fusion_client/node_modules_yelp-fusion');
+try{
+    const yelp = require('../yelp_fusion_client/node_modules/yelp-fusion');
+}
+catch(e){
+    console.log(e);
+}
 const apiKey = 'lK_XNoYU9TEkISrjQC8E2aE-9eamI3uQkYP-xPFHQxwKJ0-Ptd0x64SgN9zAp6kOUWM2ScBc17XQzTeP_vcVc-zs5rXdjUsaK7WxjJ5ZtqPB3y7IBRQFPNIRLBCdXHYx';
 
 // Sets parameters for restaurant search
