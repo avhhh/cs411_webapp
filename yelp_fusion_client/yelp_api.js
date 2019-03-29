@@ -1,15 +1,15 @@
 'use strict';
-<<<<<<< HEAD
-var express = require('express'),
-    app = express(),
+// <<<<<<< HEAD
+// var express = require('express'),
+//     app = express(),
 
     // require other modules
 
 
 // require and load dotenv
-require('dotenv').load();
-=======
->>>>>>> parent of 9ea6ef8... lol
+// require('dotenv').load();
+// =======
+// >>>>>>> parent of 9ea6ef8... lol
 
 // Import the Yelp API Client
 const yelp = require('yelp-fusion');
