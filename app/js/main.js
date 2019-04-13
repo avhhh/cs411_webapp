@@ -70,6 +70,14 @@
 })(jQuery);
 
 
+    $('.validate-form').on('submit',function(){
+        check=false;
+        
+        getInput();
+
+        return check;
+    });
+
 
 function getInput(){
 
@@ -77,7 +85,21 @@ function getInput(){
     var cuisine = $('input[name="cuisine"]');
     var params = [location, cuisine];
 
+    $.ajax({
+        url:"/app/yelp_fusion_client/yelp_api.js",
+        method:"POST",
+        data:{
+            params: params
+        }
+    }).done(function(data){
+        console.log(data);
+    });
+
     //need a way to send params to back end
 
     return false;
 }
+
+
+
+
