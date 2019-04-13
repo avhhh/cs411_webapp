@@ -86,7 +86,7 @@ function getInput(){
     var params = [location, cuisine];
 
     $.ajax({
-        url:"/411/app/yelp_fusion_client/yelp_api.js",
+        url:"/friendsconnect_webapp/app/yelp_fusion_client/yelp_api.js",
         method:"POST",
         data:{params: params},
 
