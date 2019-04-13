@@ -18,6 +18,8 @@ const apiKey = 'lK_XNoYU9TEkISrjQC8E2aE-9eamI3uQkYP-xPFHQxwKJ0-Ptd0x64SgN9zAp6kO
 // Sets parameters for restaurant search
 
 
+
+
 const searchRequest = {
   categories: params[0],
   location: params[1],
