@@ -89,12 +89,14 @@ function getInput(){
         url:"/app/yelp_fusion_client/yelp_api.js",
         method:"POST",
         data:{params: params},
-        
+
         success: function(msg){
             console.log( "Data Saved: " + msg );
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             console.log("some error");
+            console.log(textStatus);
+            console.log(errorThrown);
         }
     });
     //need a way to send params to back end
