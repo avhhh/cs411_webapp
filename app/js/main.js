@@ -81,12 +81,12 @@
 
 function getInput(){
 
-    var location = $('input[name="location"]');
-    var cuisine = $('input[name="cuisine"]');
+    var location = $('input[name="location"]').val();
+    var cuisine = $('input[name="cuisine"]').val();
     var params = [location, cuisine];
 
     $.ajax({
-        url:"/app/yelp_fusion_client/yelp_api.js",
+        url:"/411/app/yelp_fusion_client/yelp_api.js",
         method:"POST",
         data:{params: params},
 
