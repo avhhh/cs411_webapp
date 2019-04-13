@@ -88,13 +88,15 @@ function getInput(){
     $.ajax({
         url:"/app/yelp_fusion_client/yelp_api.js",
         method:"POST",
-        data:{
-            params: params
+        data:{params: params},
+        
+        success: function(msg){
+            console.log( "Data Saved: " + msg );
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log("some error");
         }
-    }).done(function(data){
-        console.log(data);
     });
-
     //need a way to send params to back end
 
     return false;
