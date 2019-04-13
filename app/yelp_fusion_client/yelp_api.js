@@ -1,26 +1,19 @@
 'use strict';
-// <<<<<<< HEAD
-// var express = require('express'),
-//     app = express(),
-
-    // require other modules
-
-
-// require and load dotenv
-// require('dotenv').load();
-// =======
-// >>>>>>> parent of 9ea6ef8... lol
 
 // Import the Yelp API Client
 const yelp = require('yelp-fusion');
 const apiKey = 'lK_XNoYU9TEkISrjQC8E2aE-9eamI3uQkYP-xPFHQxwKJ0-Ptd0x64SgN9zAp6kOUWM2ScBc17XQzTeP_vcVc-zs5rXdjUsaK7WxjJ5ZtqPB3y7IBRQFPNIRLBCdXHYx';
 
+// Receive frontend parameters
+const express = require("express");
+var app = express();
+app.get('/js/main.js', function(req, res){
+  console.log("HTTP Request received.");
+})
 // Sets parameters for restaurant search
-
-
 const searchRequest = {
-  categories: params[0],
-  location: params[1],
+  categories: "sushi",
+  location: "boston, ma",
   open_now: true
 };
 
