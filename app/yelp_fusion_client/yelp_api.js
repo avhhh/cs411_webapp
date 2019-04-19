@@ -13,24 +13,22 @@ app.get('/yelp_call', function(req, res){
   console.log("query: " + JSON.stringify(req.query));
   console.log("body: " + JSON.stringify(req.body));
 
-// Sets parameters for restaurant search
-const searchRequest = {
-  categories: "sushi",
-  location: "boston, ma",
-  open_now: true
+  var params = req.body.params;
 
-  //POST, data is:
-  //req.body.name (name is the form field on front end)
-};
+  const searchRequest = {
+    location: params[0],
+    categories: params[1],
+    open_now: true
+  };
 
-const client = yelp.client(apiKey);
+  const client = yelp.client(apiKey);
 
-client.search(searchRequest).then(response => {
-  const r_results = response.jsonBody.businesses;
-  console.log("queried results");
-  res.send(r_results)
+  client.search(searchRequest).then(response => {
+    const r_results = response.jsonBody.businesses;
+    console.log("queried results" + r_results);
+    res.send(r_results);
 
-}).catch(e => {
-  console.log(e);
-})
+  }).catch(e => {
+    console.log(e);
+  });
 });
