@@ -1,11 +1,4 @@
 'use strict';
-//Create HTTP server
-var http = require("http");
-http.createServer(function(req,res){
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end("Hello World!\n");
-}).listen(3000, "127.0.0.1");
-console.log("Server running...");
 
 // Import the Yelp API Client
 const yelp = require('yelp-fusion');
@@ -19,13 +12,15 @@ app.get('/yelp_call', function(req, res){
   console.log("params: " + JSON.stringify(req.body));
   console.log("query: " + JSON.stringify(req.query));
   console.log("body: " + JSON.stringify(req.body));
-})
 
 // Sets parameters for restaurant search
 const searchRequest = {
   categories: "sushi",
   location: "boston, ma",
   open_now: true
+
+  //POST, data is:
+  //req.body.name (name is the form field on front end)
 };
 
 const client = yelp.client(apiKey);
@@ -33,12 +28,9 @@ const client = yelp.client(apiKey);
 client.search(searchRequest).then(response => {
   const r_results = response.jsonBody.businesses;
   console.log("queried results");
-  // // Iterates through the JSON body and prints result to console
-  // var i;
-  // for (i = 0; i < r_results.length; i++){
-  //   const JSON_string = JSON.stringify(r_results[0], null, 4);
-  //   console.log(JSON_string);
-  // }
+  res.send(r_results)
+
 }).catch(e => {
   console.log(e);
+})
 });
