@@ -18,7 +18,7 @@ app.post('/yelp-call', (req, res) =>{
 
 // Import the Yelp API Client
 const yelp = require('yelp-fusion');
-const apiKey = 'lK_XNoYU9TEkISrjQC8E2aE-9eamI3uQkYP-xPFHQxwKJ0-Ptd0x64SgN9zAp6kOUWM2ScBc17XQzTeP_vcVc-zs5rXdjUsaK7WxjJ5ZtqPB3y7IBRQFPNIRLBCdXHYx';
+const apiKey = config.YELP_KEY;
 
   console.log("Request received.");
   const location = req.body.location
