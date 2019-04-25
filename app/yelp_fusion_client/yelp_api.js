@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 //Creating a server
 const http = require('http');
 
@@ -17,8 +17,8 @@ app.use(express.urlencoded({extended:true}))
 app.post('/yelp-call', (req, res) =>{
 
 // Import the Yelp API Client
+const apiKey = 'lK_XNoYU9TEkISrjQC8E2aE-9eamI3uQkYP-xPFHQxwKJ0-Ptd0x64SgN9zAp6kOUWM2ScBc17XQzTeP_vcVc-zs5rXdjUsaK7WxjJ5ZtqPB3y7IBRQFPNIRLBCdXHYx';
 const yelp = require('yelp-fusion');
-const apiKey = config.YELP_KEY;
 
   console.log("Request received.");
   const location = req.body.location
