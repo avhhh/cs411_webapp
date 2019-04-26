@@ -16,17 +16,22 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + "/fb_main.html");
 });
 
+app.get('/main_page', function(req, res){
+  //app.use(express.static("formatting"));
+  res.sendFile('/Users/Owner/Desktop/cs411_proj/friendsconnect_webapp/app/index.html');
+})
 var fb_accessToken = "";
 passport.use(new FacebookStrategy({
     clientID: "292796878300593",
     clientSecret: "3f7d6dd64dd13bb9c8bac671914957b6",
     callbackURL: "/auth/facebook/callback"
   },
-  function(accessToken, refreshToken, profile, done) {
-    // Just logs your Facebook Account name to the terminal
-    console.log("Login successfully.");
-    console.log(profile.displayName);
-    fb_accessToken = accessToken;
+  function(accessToken, refreshToken, profile, done) {   
+      // Just logs your Facebook Account name to the terminal
+      console.log("Login successfully as:");
+      console.log(profile.displayName);
+      console.log("Your AccessToken is:", accessToken);
+      done();
   }
 ));
 
@@ -43,8 +48,10 @@ access was granted, the user will be logged in.  Otherwise,
 authentication has failed.
 */
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', {successRedirect: '/', failureRedirect: '/login', scope: 'read_stream' }));
-
+  passport.authenticate('facebook', {
+    successRedirect: '/', 
+    failureRedirect: '/main_page'
+   }));
 
 // Receive frontend parameters
 app.use(express.urlencoded({extended:true}));
