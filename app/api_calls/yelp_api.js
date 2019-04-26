@@ -27,16 +27,42 @@ const yelp = require('yelp-fusion');
   const searchRequest = {
     location: location,
     categories: cusine,
-    open_now: true
+    term: "restaurants",
+    open_now: true,
   };
 
   const client = yelp.client(apiKey);
 
   client.search(searchRequest).then(response => {
     const r_results = response.jsonBody.businesses;
-    console.log("Queried Results");
-    //res.sendFile(__dirname + "/yelp_display.html");
-    res.send(r_results);
+    // Arrays to store parsed API information
+    var restaurant_names = [];
+    var restaurant_locations = [];
+    var restaurant_distances = [];
+
+    // Parsing the response body
+    for (var i = 0; i < r_results.length; i++){
+        restaurant_names.push(r_results[i]["name"]);
+        restaurant_distances.push(r_results[i]['distance'] + " meters.");
+        // Parse the restaurant address for displaying
+        var fulladdr = r_results[i]["location"]["display_address"];
+        var parsed_addr = "";
+        for (var j = 0; j < fulladdr.length; j++){
+            parsed_addr += fulladdr[j];
+            parsed_addr += " ";
+        }
+        restaurant_locations.push(parsed_addr);
+    }
+    // //Sends the array to browser
+    // for (var i = 0; i < r_results.length; i++){
+    //     res.write(restaurant_names[i]);
+    //     res.write("\n");
+    //     res.write(restaurant_locations[i]);
+    //     res.write("\n");
+    //     res.write(restaurant_distances[i]);
+    //     res.write("\n");
+    // }
+    // res.end();
 
   }).catch(e => {
     console.log(e);
