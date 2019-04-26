@@ -29,6 +29,7 @@
     });
 
 
+
 function getInput(){
 
     var location = $('input[name="location"]').val();
@@ -99,6 +100,9 @@ function showResults(output){
     $("#content1").fadeOut(function(){
         $("#content2").fadeIn();
     });
+
+     $('tr').hover(function(){$(this).toggleClass("focusedRow")}, function(){$(this).toggleClass("focusedRow")});
+     $('.focusedRow').click();
 }
 
 
