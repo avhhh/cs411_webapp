@@ -32,10 +32,10 @@
 function getInput(){
 
     var location = $('input[name="location"]').val();
-   // var cuisine = $('input[name="cuisine"]').val();
+    // var cuisine = $('input[name="cuisine"]').val();
     var price = parsePrice();
     var distance = parseDistance();
-    var params = [location, price, distance]; // add cuisine
+    var params = [location, price, distance, time]; // add cuisine
 
     $.ajax({
         url:"http://127.0.0.1:3000/yelp-call",
@@ -104,5 +104,29 @@ function showResults(output){
 
 
 
+
+function writeEvent(){
+
+    var time = $('input[name="time"]').val();
+    var location = $();
+    //include user
+    var params = [location, time/*, user*/];
+
+    $.ajax({
+        url:"http://127.0.0.1:3000/db-call",
+        method:"POST",
+        data:{params: params},
+
+        success: function(output){
+            console.log(output);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log("some error");
+            console.log(textStatus);
+            console.log(errorThrown);
+        }
+    });
+
+}
 
 

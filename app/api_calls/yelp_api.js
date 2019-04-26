@@ -1,6 +1,7 @@
 'use strict';
 //Creating a server
 const http = require('http');
+const mysql = require('mysql');
 
 const express = require("express");
 var app = express();
@@ -9,11 +10,13 @@ const port = 3000;
 
 // Display the "Home Page"
 app.get('/', function(req, res){
-    res.sendFile(__dirname + "/display.html");
+    res.sendFile(__dirname + "/fb_authenticate.html");
 });
 
 // Receive frontend parameters
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({extended:true}));
+
+
 app.post('/yelp-call', (req, res) =>{
 
 // Import the Yelp API Client
@@ -26,8 +29,7 @@ const yelp = require('yelp-fusion');
   //const cuisine = params[1];
   const price = params[1];
   const distance = params[2];
-  console.log(params);
-  console.log(price);
+  // params[3] is starting time
 
   const searchRequest = {
     location: location,
@@ -70,6 +72,32 @@ const yelp = require('yelp-fusion');
   }).catch(e => {
     console.log(e);
   });
+
+});
+
+
+app.post('/db-call', (req, res)=>{
+  const location = req.body.location;
+  const time = req.body.time;
+  //get personal info
+
+  const connection = mysql.createConnection({
+    host: hostname,
+    user: 'root',
+    password: '',
+    database: 'main'
+  });
+
+  connection.connect();
+
+  const query = "INSERT INTO `main`(`user`, `time`, `location`) VALUES ('user', 'time', 'locaiton')";
+
+  connection.query(query, function (error, results, fields) {
+    if (error) throw error;
+    console.log('The solution is: ', results[0].solution);
+  });
+
+  connection.end();
 
 });
 
