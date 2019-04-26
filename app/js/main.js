@@ -87,7 +87,7 @@ function showResults(output){
     var htmlString = "";
 
     for(var i=0; i<output[0].length; i++){
-        htmlString += "<tr>";
+        htmlString += "<tr id=result"+i+">";
         htmlString += "<td>" + output[0][i] + "</td>";
         htmlString += "<td>" + output[1][i] + "</td>";
         htmlString += "<td>" + output[2][i] + "</td>";
@@ -102,7 +102,11 @@ function showResults(output){
     });
 
      $('tr').hover(function(){$(this).toggleClass("focusedRow")}, function(){$(this).toggleClass("focusedRow")});
-     $('.focusedRow').click();
+     
+     $('.focusedRow').click(function(){
+        var id = $(this).attr(id);
+        console.log(id);
+     });
 }
 
 
