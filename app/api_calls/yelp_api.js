@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 //Creating a server
 const http = require('http');
 const mysql = require('mysql');
@@ -17,9 +17,10 @@ app.get('/', function(req, res){
 });
 
 app.get('/main_page', function(req, res){
-  //app.use(express.static("formatting"));
+  //Triggers the frontend for restaurant selction
   res.sendFile('/Users/Owner/Desktop/cs411_proj/friendsconnect_webapp/app/index.html');
-})
+});
+
 var fb_accessToken = "";
 passport.use(new FacebookStrategy({
     clientID: "292796878300593",
@@ -30,6 +31,7 @@ passport.use(new FacebookStrategy({
       // Just logs your Facebook Account name to the terminal
       console.log("Login successfully as:");
       console.log(profile.displayName);
+      fb_accessToken = accessToken;
       console.log("Your AccessToken is:", accessToken);
       done();
   }
@@ -66,16 +68,12 @@ const yelp = require('yelp-fusion');
   const params = req.body.params;
   console.log("Request received.");
   const location = params[0];
-  //const cuisine = params[1];
   const price = params[1];
   const distance = params[2];
-  // params[3] is starting time
 
   const searchRequest = {
     location: location,
-   // categories: cuisine,
     term: "restaurants",
-    //radius: distance,
     price: price,
     sort_by: "rating",
   };
