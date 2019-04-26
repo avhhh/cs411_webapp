@@ -53,16 +53,16 @@ const yelp = require('yelp-fusion');
         }
         restaurant_locations.push(parsed_addr);
     }
-    // //Sends the array to browser
-    // for (var i = 0; i < r_results.length; i++){
-    //     res.write(restaurant_names[i]);
-    //     res.write("\n");
-    //     res.write(restaurant_locations[i]);
-    //     res.write("\n");
-    //     res.write(restaurant_distances[i]);
-    //     res.write("\n");
-    // }
-    // res.end();
+    //Sends the array to browser
+    for (var i = 0; i < r_results.length; i++){
+        res.write(restaurant_names[i]);
+        res.write("\n");
+        res.write(restaurant_locations[i]);
+        res.write("\n");
+        res.write(restaurant_distances[i]);
+        res.write("\n");
+    }
+    res.end();
 
   }).catch(e => {
     console.log(e);
