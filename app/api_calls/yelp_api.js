@@ -17,6 +17,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/main_page', function(req, res){
+  //app.use(express.static("formatting"));
   res.sendFile('/Users/Owner/Desktop/cs411_proj/friendsconnect_webapp/app/index.html');
 })
 var fb_accessToken = "";
