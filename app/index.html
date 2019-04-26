@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<script source="js/main.js"></script>
-
 <head>
-	<title>BreadGetter inc.</title>
+	<title>Contact V4</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -17,7 +15,11 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
@@ -25,60 +27,119 @@
 </head>
 <body>
 
-<!-- Formatting of webpage -->
-	<div class="bg-contact2" style="background-image: url('images/bg-01.jpg');">
-		<div class="container-contact2">
-			<div class="wrap-contact2">
-				<form class="contact2-form validate-form">
-					<span class="contact2-form-title">
-						Search for Restaurants!
-					</span>
 
-					<div class="wrap-input2 validate-input" data-validate="Location is required">
-						<input class="input2" type="text" name="location">
-						<span class="focus-input2" data-placeholder="LOCATION"></span>
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form" onsubmit="return false;">
+				<span class="contact100-form-title" id="title">
+					LunchPal.io
+				</span>
+
+				<div id="content1">
+
+				<div class="wrap-input100">
+					<span class="label-input100">Location</span>
+					<input class="input100" type="text" name="location" placeholder="Example: 1 State St, Boston, MA">
+					<span class="focus-input100"></span>
+				</div>
+
+				<!--<div class="wrap-input100">
+					<span class="label-input100">Cuisine</span>
+					<input class="input100" type="text" name="cuisine" placeholder="Asian, Italian, American etc.">
+					<span class="focus-input100"></span>
+				</div>-->
+
+				<div class="wrap-input100 input100-select">
+					<span class="label-input100">Price Range</span>
+					<div>
+						<select class="selection-2" name="price">
+							<option value="0">Choose Max Range</option>
+							<option value="1">$</option>
+							<option value="2">$$</option>
+							<option value="3">$$$</option>
+							<option value="4">$$$+</option>
+						</select>
 					</div>
+					<span class="focus-input100"></span>
+				</div>
 
-					<div class="wrap-input2">
-						<input class="input2" type="text" name="cuisine">
-						<span class="focus-input2" data-placeholder="CUISINE PREFERENCE"></span>
+				<div class="wrap-input100 input100-select">
+					<span class="label-input100">Walking Distance</span>
+					<div>
+						<select class="selection-2" name="walkDistance">
+							<option value="0">Select Distance</option>
+							<option value="400">Short (0.25 mile)</option>
+							<option value="800">Medium (0.5 mile)</option>
+							<option value="1600">Long (1 mile)</option>
+							<option value="0">Any</option>
+						</select>
 					</div>
+					<span class="focus-input100"></span>
+				</div>
 
-					<div class="container-contact2-form-btn">
-						<div class="wrap-contact2-form-btn">
-							<div class="contact2-form-bgbtn"></div>
-							<button onClick = "getInput()" class="contact2-form-btn">
+
+				<div class="container-contact100-form-btn">
+					<div class="wrap-contact100-form-btn">
+						<div class="contact100-form-bgbtn"></div>
+						<button class="contact100-form-btn">
+							<span>
 								Search
-							</button>
-						</div>
+								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							</span>
+						</button>
 					</div>
-				</form>
+				</div>
 			</div>
+			<div id="content2">
+				<table id="resultsTable">
+					<tr>
+						<th>Name</th>
+						<th>Location</th>
+						<th>Distance</th>
+						<th>Price</th>
+					</tr>
+				</table>
+			</div>
+			</form>
 		</div>
 	</div>
 
 
 
+	<div id="dropDownSelect1"></div>
 
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/bootstrap/js/popper.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/select2/select2.min.js"></script>
+	<script>
+		$(".selection-2").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-	  gtag('config', 'UA-23581568-13');
-	</script>
+  gtag('config', 'UA-23581568-13');
+</script>
 
 </body>
 </html>

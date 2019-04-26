@@ -20,15 +20,22 @@ app.post('/yelp-call', (req, res) =>{
 const apiKey = 'lK_XNoYU9TEkISrjQC8E2aE-9eamI3uQkYP-xPFHQxwKJ0-Ptd0x64SgN9zAp6kOUWM2ScBc17XQzTeP_vcVc-zs5rXdjUsaK7WxjJ5ZtqPB3y7IBRQFPNIRLBCdXHYx';
 const yelp = require('yelp-fusion');
 
+  const params = req.body.params;
   console.log("Request received.");
-  const location = req.body.location
-  const cusine = req.body.cusine
+  const location = params[0];
+  //const cuisine = params[1];
+  const price = params[1];
+  const distance = params[2];
+  console.log(params);
+  console.log(price);
 
   const searchRequest = {
     location: location,
-    categories: cusine,
+   // categories: cuisine,
     term: "restaurants",
-    open_now: true,
+    //radius: distance,
+    price: price,
+    sort_by: "rating",
   };
 
   const client = yelp.client(apiKey);
@@ -39,6 +46,7 @@ const yelp = require('yelp-fusion');
     var restaurant_names = [];
     var restaurant_locations = [];
     var restaurant_distances = [];
+    var restaurant_prices = [];
 
     // Parsing the response body
     for (var i = 0; i < r_results.length; i++){
@@ -47,21 +55,16 @@ const yelp = require('yelp-fusion');
         // Parse the restaurant address for displaying
         var fulladdr = r_results[i]["location"]["display_address"];
         var parsed_addr = "";
+        restaurant_prices.push(r_results[i]["price"]);
         for (var j = 0; j < fulladdr.length; j++){
             parsed_addr += fulladdr[j];
             parsed_addr += " ";
         }
         restaurant_locations.push(parsed_addr);
     }
-    //Sends the array to browser
-    for (var i = 0; i < r_results.length; i++){
-        res.write(restaurant_names[i]);
-        res.write("\n");
-        res.write(restaurant_locations[i]);
-        res.write("\n");
-        res.write(restaurant_distances[i]);
-        res.write("\n");
-    }
+    var output = [restaurant_names, restaurant_locations, restaurant_distances, restaurant_prices];
+ 
+    res.send(output);
     res.end();
 
   }).catch(e => {
