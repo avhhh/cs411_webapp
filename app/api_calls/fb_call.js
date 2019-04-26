@@ -10,6 +10,7 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + "/fb_main.html");
 });
 
+var fb_accessToken = "";
 passport.use(new FacebookStrategy({
     clientID: "292796878300593",
     clientSecret: "3f7d6dd64dd13bb9c8bac671914957b6",
@@ -19,6 +20,7 @@ passport.use(new FacebookStrategy({
     // Just logs your Facebook Account name to the terminal
     console.log("Login successfully.");
     console.log(profile.displayName);
+    fb_accessToken = accessToken;
   }
 ));
 
