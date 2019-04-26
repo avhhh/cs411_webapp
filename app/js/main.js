@@ -35,7 +35,7 @@ function getInput(){
     // var cuisine = $('input[name="cuisine"]').val();
     var price = parsePrice();
     var distance = parseDistance();
-    var params = [location, price, distance, time]; // add cuisine
+    var params = [location, price, distance]; // add cuisine
 
     $.ajax({
         url:"http://127.0.0.1:3000/yelp-call",
